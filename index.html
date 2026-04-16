@@ -4,692 +4,1134 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Litte Flower Matriculation School - Home</title>
+    <title>Little Flower Matriculation School - Home</title>
+    <link rel="icon" type="image/png" sizes="56x56" href="images/fav-icon/icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="icon"
-      type="image/png"
-      sizes="56x56"
-      href="images/fav-icon/icon.png"
-    />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Acme&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <style>
+      :root {
+        --blue-900: #0d2a57;
+        --blue-800: #123b78;
+        --blue-700: #1d4f99;
+        --blue-100: #eaf2ff;
+        --green-500: #57b58a;
+        --green-100: #e8f8f0;
+        --white: #ffffff;
+        --text-900: #14223a;
+        --text-700: #334155;
+        --text-500: #64748b;
+        --border: #dbe7ff;
+        --shadow-soft: 0 12px 30px rgba(10, 35, 77, 0.08);
+        --shadow-card: 0 8px 24px rgba(10, 35, 77, 0.11);
+        --radius-xl: 20px;
+        --radius-lg: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", sans-serif;
+        color: var(--text-900);
+        background: linear-gradient(180deg, #f8fbff 0%, #f7fbff 35%, #ffffff 100%);
+        line-height: 1.6;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1140px, calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .section-head {
+        margin-bottom: 26px;
+      }
+
+      .section-head .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        color: var(--blue-700);
+        background: var(--blue-100);
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: 0.86rem;
+      }
+
+      .section-head h2 {
+        margin: 14px 0 10px;
+        font-size: clamp(1.7rem, 4vw, 2.3rem);
+        line-height: 1.2;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--text-500);
+      }
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.9);
+        border-bottom: 1px solid #e5ecfb;
+      }
+
+      .top-nav-inner {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        color: var(--blue-900);
+      }
+
+      .brand img {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #dce8ff;
+      }
+
+      .brand small {
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--text-500);
+      }
+
+      .menu-btn {
+        display: none;
+        border: 0;
+        background: var(--blue-900);
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .menu a {
+        font-weight: 600;
+        color: var(--text-700);
+      }
+
+      .menu a:hover {
+        color: var(--blue-700);
+      }
+
+      .cta-pill {
+        background: linear-gradient(135deg, #f6b73c, #f28f16);
+        color: #1f1300;
+        font-weight: 800;
+        padding: 10px 15px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(242, 143, 22, 0.34);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 78vh;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(105deg, rgba(7, 27, 64, 0.9), rgba(11, 50, 96, 0.72)),
+          linear-gradient(180deg, rgba(8, 22, 53, 0.2) 0%, rgba(8, 22, 53, 0.62) 100%);
+        z-index: 1;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(5, 18, 43, 0.08) 0%, rgba(5, 18, 43, 0.5) 100%);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .hero img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        max-width: 780px;
+        padding: 86px 0;
+      }
+
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(2.1rem, 6vw, 4rem);
+        line-height: 1.1;
+        font-weight: 800;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.42);
+      }
+
+      .hero p {
+        margin: 14px auto 0;
+        max-width: 680px;
+        color: rgba(255, 255, 255, 0.92);
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+        text-shadow: 0 3px 12px rgba(0, 0, 0, 0.36);
+      }
+
+      .hero-actions {
+        margin-top: 28px;
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-weight: 700;
+        border: 1px solid transparent;
+      }
+
+      .btn-primary {
+        background: var(--green-500);
+        color: #fff;
+        box-shadow: 0 8px 22px rgba(87, 181, 138, 0.35);
+      }
+
+      .btn-light {
+        background: rgba(255, 255, 255, 0.14);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.35);
+      }
+
+      .leadership-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        padding: 24px;
+        box-shadow: var(--shadow-card);
+      }
+
+      .leader-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+
+      .leader-head img {
+        width: 94px;
+        height: 94px;
+        object-fit: cover;
+        border-radius: 18px;
+        border: 3px solid #eaf1ff;
+      }
+
+      .leader-head img.director-photo {
+        object-fit: fill;
+        background: #f5faff;
+      }
+
+      .leader-head h3 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .leader-head span {
+        font-size: 0.9rem;
+        color: var(--text-500);
+        display: block;
+      }
+
+      .muted {
+        color: var(--text-500);
+      }
+
+      .about-grid {
+        display: grid;
+        gap: 22px;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+
+      .highlight-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .highlight-item {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 14px;
+        background: #f7fbff;
+        font-weight: 600;
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .stat-box {
+        background: var(--white);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        padding: 20px 14px;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .stat-box h3 {
+        margin: 0;
+        color: var(--blue-800);
+        font-size: 1.6rem;
+      }
+
+      .stat-box p {
+        margin: 6px 0 0;
+        color: var(--text-500);
+        font-weight: 600;
+      }
+
+      .vision-mission {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .point-list {
+        margin: 10px 0 0;
+        padding-left: 18px;
+        color: var(--text-700);
+      }
+
+      .news-grid,
+      .gallery-grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .news-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .news-card {
+        overflow: hidden;
+        padding: 0;
+      }
+
+      .news-card img {
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+      }
+
+      .news-card .news-content {
+        padding: 16px;
+      }
+
+      .news-card h3 {
+        margin: 0;
+        font-size: 1.08rem;
+      }
+
+      .read-more {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--blue-700);
+        font-weight: 700;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 14px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        transition: transform 0.35s ease;
+      }
+
+      .gallery-item .overlay {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: rgba(12, 45, 96, 0.52);
+        color: #fff;
+        opacity: 0;
+        transition: opacity 0.25s ease;
+        font-weight: 700;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.08);
+      }
+
+      .gallery-item:hover .overlay {
+        opacity: 1;
+      }
+
+      .gallery-lightbox {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(6, 18, 42, 0.82);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+        z-index: 1200;
+      }
+
+      .gallery-lightbox.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .gallery-lightbox-dialog {
+        position: relative;
+        width: min(920px, 100%);
+        max-height: 88vh;
+        transform: translateY(18px) scale(0.96);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-lightbox.is-open .gallery-lightbox-dialog {
+        transform: translateY(0) scale(1);
+      }
+
+      .gallery-lightbox-image-wrap {
+        overflow: hidden;
+        border-radius: 20px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+        background: #081a38;
+      }
+
+      .gallery-lightbox-image {
+        width: 100%;
+        max-height: 88vh;
+        object-fit: contain;
+        background: #081a38;
+      }
+
+      .gallery-lightbox-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        color: var(--blue-900);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+        cursor: pointer;
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .gallery-lightbox-close:hover {
+        background: #edf4ff;
+      }
+
+      .gallery-lightbox-caption {
+        margin-top: 12px;
+        text-align: center;
+        color: #f8fbff;
+        font-weight: 600;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .form-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border);
+        padding: 22px;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .field-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .field-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #cfdcf4;
+        padding: 12px;
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .btn-submit {
+        margin-top: 6px;
+        width: 100%;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 8px;
+      }
+
+      .map-wrap {
+        margin-top: 14px;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+      }
+
+      .map-wrap iframe {
+        width: 100%;
+        height: 240px;
+        border: 0;
+      }
+
+      .footer {
+        background: #071a3a;
+        color: #dde7ff;
+        margin-top: 60px;
+      }
+
+      .footer-top {
+        padding: 54px 0 26px;
+        display: grid;
+        gap: 22px;
+        grid-template-columns: 1.2fr 1fr 1fr;
+      }
+
+      .footer h4 {
+        margin: 0 0 10px;
+        color: #fff;
+      }
+
+      .footer-links {
+        display: grid;
+        gap: 8px;
+      }
+
+      .social-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .social-chip {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 10px;
+        font-size: 0.85rem;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 14px 0 20px;
+        color: #c5d3f5;
+        text-align: center;
+      }
+
+      @media (max-width: 1024px) {
+        .news-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 860px) {
+        .menu-btn {
+          display: inline-flex;
+        }
+
+        .menu {
+          position: fixed;
+          left: 0;
+          right: 0;
+          top: 78px;
+          background: #fff;
+          border-bottom: 1px solid #d8e5ff;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+          padding: 14px 1rem 20px;
+          transform: translateY(-130%);
+          opacity: 0;
+          pointer-events: none;
+          transition: 0.25s ease;
+        }
+
+        .menu.open {
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+
+        .leadership-grid,
+        .about-grid,
+        .vision-mission,
+        .form-grid,
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .field-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .section {
+          padding: 56px 0;
+        }
+
+        .hero {
+          min-height: 72vh;
+        }
+
+        .gallery-grid,
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery-lightbox {
+          padding: 18px;
+        }
+
+        .gallery-lightbox-close {
+          top: 10px;
+          right: 10px;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <a style="display: none" id="aLink" href="./images/annualday.jpg"></a>
-    <div class="main-page-wrapper">
-      <div id="loader-wrapper">
-        <div id="loader"></div>
+    <header class="top-nav">
+      <div class="container top-nav-inner">
+        <a href="#home" class="brand">
+          <img src="images/logo/logo.png" alt="Little Flower Matriculation School" />
+          <span>
+            LITTLE FLOWER MATRICULATION SCHOOL
+            <small>Lead Kindly Light</small>
+          </span>
+        </a>
+        <button class="menu-btn" id="menuBtn" type="button">Menu</button>
+        <nav class="menu" id="siteMenu" aria-label="Main navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#academics">Academics</a>
+          <a href="#admissions">Admissions</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#news">News</a>
+          <a href="#contact">Contact</a>
+          <a href="#admissions" class="cta-pill">Admission Open</a>
+        </nav>
       </div>
-      <header class="header-wrapper">
-        <div class="top-header bg-one">
-          <div class="container">
-            <div class="row">
-              <div class="col-sm-5 col-xs-12 left-list">
-                <ul>
-                  <li>
-                    <a href="#"
-                      ><i class="fa fa-envelope" aria-hidden="true"></i>
-                      support@lfms.com</a
-                    >
-                  </li>
-                  <li>
-                    <a href="#"
-                      ><i class="fa fa-phone" aria-hidden="true"></i> +88 02
-                      9292162</a
-                    >
-                  </li>
-                </ul>
-              </div>
-              <div class="col-sm-7 col-xs-12 right-list text-right">
-                <ul>
-                  <li><a href="#">Career</a></li>
-                  <li>
-                    <ul class="social-icon">
-                      <li>
-                        <a href="#" class="tran3s"
-                          ><i class="fa fa-facebook" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tran3s"
-                          ><i class="fa fa-twitter" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tran3s"
-                          ><i class="fa fa-skype" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tran3s"
-                          ><i class="fa fa-pinterest" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                      <li>
-                        <a href="#" class="tran3s"
-                          ><i class="fa fa-google-plus" aria-hidden="true"></i
-                        ></a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="theme-menu-wrapper">
-          <div class="container">
-            <div class="main-content-wrapper">
-              <div class="media col-md-2 logo">
-                <a href="index.html">
-                  <img src="images/logo/logo.png" alt="Logo" />
-                </a>
-              </div>
-              <div id="" class="col-md-2"></div>
-              <div
-                id=""
-                class="theme-main-menu school_title col-md-6"
-                id="mega-menu-wrapper"
-              >
-                <div id="" class="">
-                  <h5 style="text-align: center">
-                    LITTLE FLOWER MATRICULATION SCHOOL
-                  </h5>
-                  <h6 style="text-align: center">-- Lead Kindly Light --</h6>
-                </div>
-              </div>
-              <nav
-                class="theme-main-menu navbar col-md-4"
-                id="mega-menu-wrapper"
-              >
-                <div class="navbar-header">
-                  <button
-                    type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#navbar-collapse-1"
-                    aria-expanded="false"
-                  >
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                </div>
-                <div class="collapse navbar-collapse" id="navbar-collapse-1">
-                  <ul class="nav">
-                    <li class="dropdown-holder active">
-                      <a href="index.html">Home</a>
-                    </li>
-                    <li class="dropdown-holder">
-                      <a href="#">School</a>
-                      <ul class="sub-menu">
-                        <li><a href="about-us.html">About us</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          </div>
-        </div>
-      </header>
-      <div id="theme-main-banner" class="banner-one section-margin-bottom">
-        <div data-src="images/home/slide-1.jpg">
-          <div class="camera_caption">
-            <div class="container">
-              <h4 class="wow fadeInUp animated">
-                Help Shape the Future of Education in Remakri
-              </h4>
-              <h1 class="wow fadeInUp animated" data-wow-delay="0.2s">
-                Perfect Education Courses
-              </h1>
-              <p class="wow fadeInUp animated" data-wow-delay="0.3s">
-                New skills and knowledge can spark a lifetime of change. For 60
-                years, Education Development <br />
-                Center (EDC), has designed and delivered programs in education,
-                health
-              </p>
-            </div>
-          </div>
-        </div>
-        <div data-src="images/home/slide-2.jpg">
-          <div class="camera_caption text-center">
-            <div class="container">
-              <h4 class="wow fadeInUp animated">
-                Help Shape the Future of Education in Remakri
-              </h4>
-              <h1 class="wow fadeInUp animated" data-wow-delay="0.2s">
-                Perfect Education Courses
-              </h1>
-              <p class="wow fadeInUp animated" data-wow-delay="0.3s">
-                New skills and knowledge can spark a lifetime of change. For 60
-                years, Education Development <br />
-                Center (EDC), has designed and delivered programs in education,
-                health
-              </p>
-              <a
-                href="#"
-                class="wow fadeInLeft animated theme-solid-button"
-                data-wow-delay="0.4s"
-                >Get Started</a
-              >
-              <a
-                href="course-v1.html"
-                class="wow fadeInRight animated theme-line-button"
-                data-wow-delay="0.4s"
-                >Courses</a
-              >
-            </div>
-          </div>
+    </header>
+
+    <section class="hero" id="home">
+      <img src="images/home/slide-1.jpg" alt="School campus and students" />
+      <div class="container hero-content">
+        <h1>Shaping Future Leaders</h1>
+        <p>
+          Building a generation of confident learners through academic excellence,
+          discipline, and values-driven education.
+        </p>
+        <div class="hero-actions">
+          <a href="#about" class="btn btn-primary">Explore School</a>
+          <a href="#admissions" class="btn btn-light">Apply Now</a>
         </div>
       </div>
-      <div class="our-history section-margin-top">
-        <div class="container">
-          <div class="row">
-            <!-- Notoce board -->
-            <div id="" class="col-md-12">
-              <div
-                class="director-message-card"
-                style="
-                  background: transparent;
-                  border-radius: 18px;
-                  padding: 36px 32px 28px 32px;
-                  margin-bottom: 24px;
-                  text-align: center;
-                "
-              >
-                <div style="margin-bottom: 18px">
-                  <img
-                    src="./images/notice/director.png"
-                    alt="Director"
-                    style="
-                      width: 180px;
-                      height: 180px;
-                      object-fit: fill;
-                      box-shadow: 0 4px 16px rgba(42, 122, 226, 0.13);
-                      background: #f5faff;
-                      display: block;
-                      margin: 0 auto;
-                    "
-                  />
-                </div>
-                <div class="director-name" style="margin-top: 32px">
-                  <span
-                    style="
-                      display: inline-block;
-                      background: #f5f5f5;
-                      border-left: 5px solid #2a7ae2;
-                      padding: 12px 32px 12px 18px;
-                      border-radius: 8px;
-                      box-shadow: 0 2px 8px rgba(42, 122, 226, 0.08);
-                      font-family: &quot;Acme&quot;, Arial, sans-serif;
-                      text-align: left;
-                    "
-                  >
-                    <strong
-                      style="
-                        font-size: 1.3em;
-                        color: #2a7ae2;
-                        letter-spacing: 1px;
-                      "
-                      >REV.FR. I. GIRIGORI RAJAN,</strong
-                    ><br />
-                    <span
-                      style="font-size: 1.05em; color: #444; font-weight: 600"
-                      >MANAGER: DIOCESAN SCHOOLS, SALEM &amp; NAMAKAL<br />
-                      DIRECTOR: THE LITTLE FLOWER MATRICULATION SCHOOL</span
-                    >
-                  </span>
-                </div>
+    </section>
+
+    <section class="section" id="academics">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Leadership</span>
+          <h2>Message from Our Leadership</h2>
+          <p>Guided by experience, faith, and dedication to every student.</p>
+        </div>
+        <div class="leadership-grid">
+          <article class="card">
+            <div class="leader-head">
+              <img src="images/principal.png" alt="Principal" />
+              <div>
+                <h3>Principal's Message</h3>
+                <span>MR. J. BRITTO GEORGE - Principal</span>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div id="" class="col-md-12">
-              <div
-                class="principal-message-card"
-                style="
-                  background: transparent;
-                  border-radius: 18px;
-                  padding: 36px 32px 28px 32px;
-                  margin-bottom: 24px;
-                  text-align: center;
-                "
-              >
-                <div style="margin-bottom: 18px">
-                  <img
-                    src="images/principal.png"
-                    alt="Principal"
-                    style="
-                      width: 180px;
-                      height: 180px;
-                      object-fit: cover;
-                      box-shadow: 0 4px 16px rgba(42, 122, 226, 0.13);
-                      background: #f5faff;
-                      display: block;
-                      margin: 0 auto;
-                    "
-                  />
-                </div>
-                <h2
-                  style="
-                    font-family: &quot;Acme&quot;, Arial, sans-serif;
-                    font-size: 2em;
-                    color: #2a7ae2;
-                    margin-bottom: 2px;
-                    letter-spacing: 1px;
-                  "
-                >
-                  Principal's Message
-                </h2>
-                <div
-                  style="
-                    font-size: 0.95em;
-                    color: #888;
-                    font-weight: 400;
-                    margin-bottom: 8px;
-                  "
-                >
-                  Learning type Since 1992
-                </div>
-                <!--
-                <p
-                  style="
-                    font-size: 1.15em;
-                    color: #333;
-                    margin-bottom: 18px;
-                    line-height: 1.7;
-                    max-width: 600px;
-                    margin-left: auto;
-                    margin-right: auto;
-                  "
-                >
-                  We possess within us two minds. So far I have written only of
-                  the conscious mind. I would now like to introduce you to your
-                  second mind, the hidden and mysterious subconscious. We are
-                  experts in this industry with over 100 years experience.
-                </p>
-                -->
-                <p
-                  style="
-                    font-size: 1.15em;
-                    color: #333;
-                    margin-bottom: 18px;
-                    line-height: 1.7;
-                    max-width: 600px;
-                    margin-left: auto;
-                    margin-right: auto;
-                    text-align: left;
-                  "
-                >
-                  Welcome to The Little Flower Matriculation School.
-                  <br /><br />
-                  As you navigate through our website, I hope you get a true
-                  sense of the vibrant, nurturing, and intellectually
-                  stimulating environment that defines our institution. Our
-                  school is more than just a place of academic learning; it is a
-                  greenhouse where young minds - our "little flowers" - are
-                  tended to with care, discipline, and a passion for excellence.
-                  <br /><br />
-                  At The Little Flower Matriculation School, we believe that
-                  every child is a unique seed with the potential to bloom into
-                  something extraordinary. Our pedagogical approach goes beyond
-                  the standard curriculum to ensure Holistic development,
-                  character building, Future Readiness.
-                  <br /><br />
-                  We are committed to fostering a safe and inclusive space where
-                  every student feels seen, heard, and encouraged to reach their
-                  full potential. Together, let us continue to nurture this
-                  garden of learning so that our students may go forth and
-                  "fragrance" the world with their achievements and character.
-                </p>
-                <ul
-                  class="clearfix"
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    gap: 32px;
-                    margin-bottom: 18px;
-                    padding: 0;
-                    list-style: none;
-                  "
-                >
-                  <li style="display: flex; align-items: center; gap: 8px">
-                    <i
-                      class="flaticon-book2"
-                      style="font-size: 1.5em; color: #2a7ae2"
-                    ></i>
-                    <h6
-                      style="
-                        margin: 0;
-                        font-size: 1em;
-                        color: #444;
-                        font-weight: 600;
-                      "
-                    >
-                      Future growth of the business
-                    </h6>
-                  </li>
-                  <li style="display: flex; align-items: center; gap: 8px">
-                    <i
-                      class="flaticon-book3"
-                      style="font-size: 1.5em; color: #2a7ae2"
-                    ></i>
-                    <h6
-                      style="
-                        margin: 0;
-                        font-size: 1em;
-                        color: #444;
-                        font-weight: 600;
-                      "
-                    >
-                      Coaching skills for real workshops
-                    </h6>
-                  </li>
-                </ul>
-                <div class="principal-name" style="margin-top: 18px">
-                  <span
-                    style="
-                      display: inline-block;
-                      background: #f5f5f5;
-                      border-left: 5px solid #2a7ae2;
-                      padding: 12px 32px 12px 18px;
-                      border-radius: 8px;
-                      box-shadow: 0 2px 8px rgba(42, 122, 226, 0.08);
-                      font-family: &quot;Acme&quot;, Arial, sans-serif;
-                    "
-                  >
-                    <strong
-                      style="
-                        font-size: 1.3em;
-                        color: #2a7ae2;
-                        letter-spacing: 1px;
-                      "
-                      >MR. J. BRITTO GEORGE</strong
-                    ><br />
-                    <span
-                      style="font-size: 1.05em; color: #444; font-weight: 600"
-                      >PRINCIPAL</span
-                    >
-                  </span>
-                </div>
+            <p class="muted">
+              Welcome to The Little Flower Matriculation School. As you navigate
+              through our website, I hope you get a true sense of the vibrant,
+              nurturing, and intellectually stimulating environment that defines
+              our institution. We believe every child is a unique seed with the
+              potential to bloom into something extraordinary.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="leader-head">
+              <img src="images/notice/director.png" alt="Director" class="director-photo" />
+              <div>
+                <h3>Director's Message</h3>
+                <span>REV.FR. I. GIRIGORI RAJAN</span>
               </div>
             </div>
-          </div>
+            <p class="muted">
+              MANAGER: DIOCESAN SCHOOLS, SALEM &amp; NAMAKAL<br />
+              DIRECTOR: THE LITTLE FLOWER MATRICULATION SCHOOL
+            </p>
+          </article>
         </div>
       </div>
-      <div class="our-feature section-margin-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 col-xs-12 float-right">
-              <h2>School History</h2>
-              <div id="" class="mark-text">
-                Our school started on 12.06.1971 by late Rev. Fr. S.c. Sebastian
-                as the first correspondent with the first H.M. Mrs. M.s. Mary
-                with 40 students. From 1971 – 1974. From 1974 -1992 late Fr.S.
-                Amalraj took over the Correspondent ship. After Mrs. Mary left
-                the institution in 1984, Miss. C. Mary took charge and headed
-                this institution upto 1992. From 1992 onwards Rev. Sisters of
-                Immaculate Conception, Madurai are heading the institution and
-                doing their service upto date for the development of this school
-                . <br />
-                <br />
-                At present Rev. Fr. Maria Susai, VG of Salem Diocese as
-                correspondent with Rev.Sr. P.Theresa as the Principal of the
-                Little Flower Matriculation School, running with all success
-              </div>
-            </div>
-            <div class="col-md-6 col-xs-12">
-              <img src="images/home/shape1.png" alt="" />
-            </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="card">
+          <div class="section-head">
+            <span class="eyebrow">About School</span>
+            <h2>A Legacy of Learning Since 1971</h2>
           </div>
-        </div>
-      </div>
-      <!-- /.our-feature -->
-      <div class="our-feature-course-one section-margin-top">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="feature-block">
-                <div class="wrapper">
-                  <div class="icon"><i class="flaticon-exam"></i></div>
-                  <h5><a href="course-details.html">Deep Learning</a></h5>
-                  <p>
-                    This award is designed to give you a taster of teaching and
-                    prepare you to teach and will introduce
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6 col-xs-12">
-              <div class="feature-block">
-                <div class="wrapper">
-                  <div class="icon"><i class="flaticon-book4"></i></div>
-                  <h5><a href="course-details.html">Learning Courses</a></h5>
-                  <p>
-                    The new federal education law provides great opportunities
-                    for states to exercise
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 hidden-sm col-xs-12">
-              <div class="feature-block">
-                <div class="wrapper">
-                  <div class="icon"><i class="flaticon-book3"></i></div>
-                  <h5><a href="course-details.html">Study Coaching</a></h5>
-                  <p>
-                    Natural disasters such as wildfires and floods, along with
-                    other types of emergency situations
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="short-banner">
-        <div class="container">
-          <div class="main-bg-wrapper">
-            <div class="opacity clearfix">
-              <h4 class="float-left">
-                To Boost Science Learning, Start Early 4 Ways to Explore Science
-                <br />
-                with Your Child
-              </h4>
-              <a href="#" class="float-right theme-line-button theme-button"
-                >Start Now !</a
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="our-gallery section-margin-top">
-        <div class="theme-title-one theme-title">
-          <h2>Our GALLERY</h2>
-          <div class="icon"><i class="flaticon-book2"></i></div>
-          <p>
-            Change higher education financing your future, you can rely on the
-            our team to deliver a personal <br />
-            environment tailored specifically for you
+          <p class="muted">
+            Our school started on 12.06.1971 by late Rev. Fr. S.C. Sebastian as
+            the first correspondent with the first H.M. Mrs. M.S. Mary and 40
+            students. Since then, under dedicated leadership from clergy and the
+            Sisters of Immaculate Conception, Madurai, the institution has grown
+            with strong values, discipline, and service.
+          </p>
+          <p class="muted">
+            At present, Rev. Fr. Maria Susai, VG of Salem Diocese serves as
+            correspondent with Rev. Sr. P. Theresa as principal leadership,
+            continuing a proud tradition of academic progress and character
+            formation.
           </p>
         </div>
-        <div class="gallery-wrapper box-layout">
-          <div class="row">
-            <div class="col-md-3 col-xs-6">
-              <div class="gallery-image-wrapper">
-                <div class="image">
-                  <img
-                    src="images/gallery/2018-19/ScienceExpo/1 (58).JPG"
-                    alt=""
-                  />
-                  <div class="opacity">
-                    <a
-                      data-fancybox="project"
-                      href="images/gallery/2018-19/ScienceExpo/1 (58).JPG"
-                      class="zoom-view"
-                      title="We’ve done lot’s of work, Let’s Check"
-                      ><i class="fa fa-search" aria-hidden="true"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-              <div class="gallery-image-wrapper">
-                <div class="image">
-                  <img
-                    src="images/gallery/2018-19/SportsDay/1 (115).JPG"
-                    alt=""
-                  />
-                  <div class="opacity">
-                    <a
-                      data-fancybox="project"
-                      href="images/gallery/2018-19/SportsDay/1 (115).JPG"
-                      class="zoom-view"
-                      title="We’ve done lot’s of work, Let’s Check"
-                      ><i class="fa fa-search" aria-hidden="true"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-              <div class="gallery-image-wrapper">
-                <div class="image">
-                  <img
-                    src="images/gallery/2017-18/TeachersDay/1 (6).JPG"
-                    alt=""
-                  />
-                  <div class="opacity">
-                    <a
-                      data-fancybox="project"
-                      href="images/gallery/2017-18/TeachersDay/1 (6).JPG"
-                      class="zoom-view"
-                      title="We’ve done lot’s of work, Let’s Check"
-                      ><i class="fa fa-search" aria-hidden="true"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-6">
-              <div class="gallery-image-wrapper">
-                <div class="image">
-                  <img
-                    src="images/gallery/2017-18/TeachersDay/1 (60).JPG"
-                    alt=""
-                  />
-                  <div class="opacity">
-                    <a
-                      data-fancybox="project"
-                      href="images/gallery/2017-18/TeachersDay/1 (60).JPG"
-                      class="zoom-view"
-                      title="We’ve done lot’s of work, Let’s Check"
-                      ><i class="fa fa-search" aria-hidden="true"></i
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+        <div class="card">
+          <h3 style="margin-top: 0">Milestones</h3>
+          <div class="highlight-list">
+            <div class="highlight-item">1971 - School established with 40 students</div>
+            <div class="highlight-item">1992 - New leadership era under religious sisters</div>
+            <div class="highlight-item">Strong alumni success across academics and careers</div>
+            <div class="highlight-item">Consistent focus on discipline and values</div>
           </div>
         </div>
       </div>
-      <footer class="theme-footer">
-        <div class="container">
-          <div class="top-footer row">
-            <div class="col-sm-6 col-md-offset-3 col-xs-12 footer-logo-widget">
-              <div class="wrapper">
-                <div class="logo">
-                  <a href="index.html">
-                    <center>
-                      <img
-                        src="images/logo/logo_thumb.jpg"
-                        width="50%"
-                        alt=""
-                      />
-                    </center>
-                  </a>
-                </div>
-                <p>
-                  For the betterment of the students and to develop their
-                  talents opportunities are given to the boys to participate in
-                  the various cultural programmes during our sports day
-                  celebration, Teacher's day celebration, Christmas celebration,
-                  Feast day celebration, Annual day celebration etc.
-                </p>
-                <ul>
-                  <li><i class="flaticon-email"></i> school@lfms.com</li>
-                  <li>
-                    <i class="flaticon-map-line"></i> Omalur Main Road, Salem TN
-                  </li>
-                </ul>
-              </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Achievements</span>
+          <h2>Excellence Backed by Results</h2>
+          <p>Recognitions that reflect our commitment to quality education.</p>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-box">
+            <h3>100%</h3>
+            <p>Board Exam Results</p>
+          </article>
+          <article class="stat-box">
+            <h3>25+ Years</h3>
+            <p>Educational Excellence</p>
+          </article>
+          <article class="stat-box">
+            <h3>1000+</h3>
+            <p>Students Mentored</p>
+          </article>
+          <article class="stat-box">
+            <h3>50+</h3>
+            <p>Academic and Cultural Awards</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container vision-mission">
+        <article class="card">
+          <div class="section-head" style="margin-bottom: 8px">
+            <span class="eyebrow">Vision</span>
+            <h2 style="font-size: 1.6rem">Nurturing Future-Ready Citizens</h2>
+          </div>
+          <p class="muted">
+            To shape compassionate, confident, and intellectually strong students
+            who will contribute positively to society and carry forward the values
+            of integrity, responsibility, and service.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="section-head" style="margin-bottom: 8px">
+            <span class="eyebrow">Mission</span>
+            <h2 style="font-size: 1.6rem">Our Core Commitments</h2>
+          </div>
+          <ul class="point-list">
+            <li>Provide value-based and holistic education.</li>
+            <li>Promote academic excellence with individual attention.</li>
+            <li>Build confidence through co-curricular participation.</li>
+            <li>Create a safe, inclusive, and student-centered campus.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">News and Events</span>
+          <h2>Latest from Campus</h2>
+          <p>Stay updated with activities, celebrations, and student milestones.</p>
+        </div>
+        <div class="news-grid">
+          <article class="card news-card">
+            <img src="images/gallery/2018-19/ScienceExpo/1 (58).JPG" alt="Science Expo" />
+            <div class="news-content">
+              <h3>Science Expo Highlights 2018-19</h3>
+              <p class="muted">Students displayed innovative working models and won appreciation.</p>
+              <a class="read-more" href="pages/science_expo_2019.html">Read More</a>
             </div>
-          </div>
+          </article>
+          <article class="card news-card">
+            <img src="images/gallery/2018-19/SportsDay/1 (115).JPG" alt="Sports Day" />
+            <div class="news-content">
+              <h3>Annual Sports Day Celebration</h3>
+              <p class="muted">A spirited day with track events, teamwork, and sportsmanship.</p>
+              <a class="read-more" href="pages/sportsday_2019.html">Read More</a>
+            </div>
+          </article>
+          <article class="card news-card">
+            <img src="images/gallery/2017-18/TeachersDay/1 (60).JPG" alt="Teachers Day" />
+            <div class="news-content">
+              <h3>Teachers Day Program</h3>
+              <p class="muted">Students honored teachers through performances and gratitude events.</p>
+              <a class="read-more" href="pages/feastday_2019.html">Read More</a>
+            </div>
+          </article>
         </div>
-        <div class="bottom-footer">
-          <div class="container">
-            <p>
-              Copyright &copy; 2019
-              <a href="#" class="tran3s">Little Flower</a> Template by
-              <a href="#" class="tran3s" target="_blank">Touchsky Tech</a>
-            </p>
-          </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Photo Gallery</span>
+          <h2>Moments from School Life</h2>
+          <p>Snapshots of academics, celebrations, and student achievements.</p>
         </div>
-      </footer>
-      <button class="scroll-top tran3s">
-        <i class="fa fa-angle-up" aria-hidden="true"></i>
-      </button>
-      <script src="vendor/jquery.2.2.3.min.js"></script>
-      <script src="vendor/bootstrap/bootstrap.min.js"></script>
-      <script
-        type="text/javascript"
-        src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
-      ></script>
-      <script
-        type="text/javascript"
-        src="vendor/Camera-master/scripts/jquery.mobile.customized.min.js"
-      ></script>
-      <script
-        type="text/javascript"
-        src="vendor/Camera-master/scripts/jquery.easing.1.3.js"
-      ></script>
-      <script
-        type="text/javascript"
-        src="vendor/Camera-master/scripts/camera.min.js"
-      ></script>
-      <script
-        type="text/javascript"
-        src="vendor/bootstrap-mega-menu/js/menu.js"
-      ></script>
-      <script src="vendor/WOW-master/dist/wow.min.js"></script>
-      <script src="vendor/owl-carousel/owl.carousel.min.js"></script>
-      <script
-        type="text/javascript"
-        src="vendor/fancybox/dist/jquery.fancybox.min.js"
-      ></script>
-      <script type="text/javascript" src="js/theme.js"></script>
+        <div class="gallery-grid">
+          <a class="gallery-item" href="images/gallery/2018-19/ScienceExpo/1 (58).JPG">
+            <img src="images/gallery/2018-19/ScienceExpo/1 (58).JPG" alt="Science Expo" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2018-19/SportsDay/1 (115).JPG">
+            <img src="images/gallery/2018-19/SportsDay/1 (115).JPG" alt="Sports Day" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2017-18/TeachersDay/1 (6).JPG">
+            <img src="images/gallery/2017-18/TeachersDay/1 (6).JPG" alt="Teachers Day" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2017-18/TeachersDay/1 (60).JPG">
+            <img src="images/gallery/2017-18/TeachersDay/1 (60).JPG" alt="Teachers Day" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2018-19/ScienceExpo/1 (58).JPG">
+            <img src="images/gallery/2018-19/ScienceExpo/1 (58).JPG" alt="School Activity" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2018-19/SportsDay/1 (115).JPG">
+            <img src="images/gallery/2018-19/SportsDay/1 (115).JPG" alt="Sports Event" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2017-18/TeachersDay/1 (6).JPG">
+            <img src="images/gallery/2017-18/TeachersDay/1 (6).JPG" alt="Annual Program" />
+            <span class="overlay">View</span>
+          </a>
+          <a class="gallery-item" href="images/gallery/2017-18/TeachersDay/1 (60).JPG">
+            <img src="images/gallery/2017-18/TeachersDay/1 (60).JPG" alt="Classroom and Activities" />
+            <span class="overlay">View</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="gallery-lightbox" id="galleryLightbox" aria-hidden="true">
+      <div class="gallery-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Gallery image viewer">
+        <button class="gallery-lightbox-close" id="galleryLightboxClose" type="button" aria-label="Close image viewer">
+          &times;
+        </button>
+        <div class="gallery-lightbox-image-wrap">
+          <img class="gallery-lightbox-image" id="galleryLightboxImage" src="" alt="" />
+        </div>
+        <div class="gallery-lightbox-caption" id="galleryLightboxCaption"></div>
+      </div>
     </div>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $("#aLink").fancybox({
-          width: "50%",
-          height: "50%",
-          autoScale: false,
-          transitionIn: "none",
-          transitionOut: "none",
-          type: "iframe",
+
+    <section class="section" id="admissions">
+      <div class="container form-grid">
+        <article class="form-card">
+          <div class="section-head" style="margin-bottom: 14px">
+            <span class="eyebrow">Admissions</span>
+            <h2 style="margin-top: 12px">Admission Enquiry Form</h2>
+          </div>
+          <form class="field-grid" action="#" method="post">
+            <div class="field-row">
+              <input type="text" name="name" placeholder="Student / Parent Name" required />
+              <input type="tel" name="phone" placeholder="Phone Number" required />
+            </div>
+            <div class="field-row">
+              <input type="email" name="email" placeholder="Email Address" required />
+              <select name="classApplying" required>
+                <option value="">Class Applying For</option>
+                <option>Pre-KG</option>
+                <option>LKG</option>
+                <option>UKG</option>
+                <option>Class 1 to 5</option>
+                <option>Class 6 to 8</option>
+                <option>Class 9 to 10</option>
+              </select>
+            </div>
+            <textarea name="message" placeholder="Message"></textarea>
+            <button class="btn btn-primary btn-submit" type="submit">Submit Enquiry</button>
+          </form>
+        </article>
+
+        <article class="form-card" id="contact">
+          <div class="section-head" style="margin-bottom: 14px">
+            <span class="eyebrow">Contact Us</span>
+            <h2 style="margin-top: 12px">Reach Little Flower</h2>
+          </div>
+          <div class="contact-list muted">
+            <div><strong>Address:</strong> Omalur Main Road, Salem, Tamil Nadu</div>
+            <div><strong>Phone:</strong> +88 02 9292162</div>
+            <div><strong>Email:</strong> lfms.salem@gmail.com</div>
+          </div>
+          <div class="map-wrap">
+            <iframe
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Salem%20Tamil%20Nadu&output=embed"
+              title="School location map"
+            ></iframe>
+          </div>
+          <form class="field-grid" action="#" method="post" style="margin-top: 12px">
+            <input type="text" name="contactName" placeholder="Your Name" />
+            <input type="email" name="contactEmail" placeholder="Your Email" />
+            <textarea name="contactMessage" placeholder="Your Message"></textarea>
+            <button class="btn btn-primary btn-submit" type="submit">Send Message</button>
+          </form>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container footer-top">
+        <div>
+          <h4>Little Flower Matriculation School</h4>
+          <p>
+            A nurturing campus where learning, discipline, and values shape
+            students into responsible leaders for tomorrow.
+          </p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#academics">Academics</a>
+            <a href="#admissions">Admissions</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <p>Email: school@lfms.com</p>
+          <p>Phone: +88 02 9292162</p>
+          <div class="social-row">
+            <a href="#" class="social-chip">Facebook</a>
+            <a href="#" class="social-chip">Instagram</a>
+            <a href="#" class="social-chip">YouTube</a>
+          </div>
+        </div>
+      </div>
+      <div class="container footer-bottom">© 2026 Little Flower Matriculation School. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+      (function () {
+        var menuBtn = document.getElementById("menuBtn");
+        var siteMenu = document.getElementById("siteMenu");
+        var galleryItems = document.querySelectorAll(".gallery-item");
+        var galleryLightbox = document.getElementById("galleryLightbox");
+        var galleryLightboxImage = document.getElementById("galleryLightboxImage");
+        var galleryLightboxCaption = document.getElementById("galleryLightboxCaption");
+        var galleryLightboxClose = document.getElementById("galleryLightboxClose");
+
+        function openGalleryLightbox(event) {
+          var image = event.currentTarget.querySelector("img");
+
+          event.preventDefault();
+          galleryLightboxImage.src = event.currentTarget.getAttribute("href");
+          galleryLightboxImage.alt = image ? image.alt : "Gallery image";
+          galleryLightboxCaption.textContent = image ? image.alt : "";
+          galleryLightbox.classList.add("is-open");
+          galleryLightbox.setAttribute("aria-hidden", "false");
+          document.body.classList.add("modal-open");
+        }
+
+        function closeGalleryLightbox() {
+          galleryLightbox.classList.remove("is-open");
+          galleryLightbox.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("modal-open");
+
+          window.setTimeout(function () {
+            if (!galleryLightbox.classList.contains("is-open")) {
+              galleryLightboxImage.src = "";
+              galleryLightboxImage.alt = "";
+              galleryLightboxCaption.textContent = "";
+            }
+          }, 280);
+        }
+
+        menuBtn.addEventListener("click", function () {
+          siteMenu.classList.toggle("open");
         });
-      });
+
+        siteMenu.addEventListener("click", function (event) {
+          if (event.target.tagName === "A") {
+            siteMenu.classList.remove("open");
+          }
+        });
+
+        galleryItems.forEach(function (item) {
+          item.addEventListener("click", openGalleryLightbox);
+        });
+
+        galleryLightboxClose.addEventListener("click", closeGalleryLightbox);
+
+        galleryLightbox.addEventListener("click", function (event) {
+          if (event.target === galleryLightbox) {
+            closeGalleryLightbox();
+          }
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape" && galleryLightbox.classList.contains("is-open")) {
+            closeGalleryLightbox();
+          }
+        });
+      })();
     </script>
   </body>
 </html>
